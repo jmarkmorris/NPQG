@@ -1,3 +1,4 @@
+from audioop import cross
 from manim import *
 
 class NPQGlogo(Scene):
@@ -59,6 +60,7 @@ class NPQGlogo(Scene):
         # self.play(Indicate(G, color='#008b29'))
 
         self.wait(2)
+
        
 
 
