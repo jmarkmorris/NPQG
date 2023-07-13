@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/markmorris/Documents/GitHub/NPQG/media/videos/scene/720p30/partial_movie_files/ElectrinoAndPositrino/1342159004_4107574407_39097915.mp4'
-file 'file:/Users/markmorris/Documents/GitHub/NPQG/media/videos/scene/720p30/partial_movie_files/ElectrinoAndPositrino/1353618911_26240085_758923212.mp4'
