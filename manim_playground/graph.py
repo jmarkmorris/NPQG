@@ -80,7 +80,7 @@ class GraphExample(Scene):
         # 7 odd charge eventually causes stability decay
         # 24 is pretty good. 
         # 32 too many.
-        num_vertices = 8
+        num_vertices = 12
         vertices = {f'v{i}': ColoredDot(colors[i % 2], [random.uniform(*x_range), random.uniform(*y_range), 0]) for i in range(num_vertices)}
         velocities = {f'v{i}': np.array([random.uniform(0.0001, 0.0002) for _ in range(3)]) for i in range(num_vertices)}
         for v in velocities.values():
@@ -119,4 +119,4 @@ class GraphExample(Scene):
                 mob.vertices[vertex].move_to(next_positions[vertex])
 
         G.add_updater(update_vertices)
-        self.wait(60)
+        self.wait(30)
