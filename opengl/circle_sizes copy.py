@@ -1,7 +1,3 @@
-
-# todo : port to manim
-
-
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
@@ -11,8 +7,6 @@ from pygame.locals import *
 import math
 import sys
 from ctypes import *
-
-paused = 0
 
 def draw_circle(x, y, radius, xoffset):
     glBegin(GL_TRIANGLE_FAN)
@@ -66,10 +60,10 @@ while True:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 quit()
-            elif event.key == K_SPACE:
-                paused = not paused
+            # elif event.key == K_SPACE:
+            #     paused = not paused
 
-    if not paused:
+    # if not paused:
         glClearColor(0, 0, 0, 1)
         glClear(GL_COLOR_BUFFER_BIT)
 

@@ -1,4 +1,4 @@
-# manim --show_in_file_browser dipole_orbit_manim.py OrbitingCircles -p
+# manim -pqh --disable_caching dipole_orbit_manim.py OrbitingCircles -p
 from manim import *
 from manim import RED, BLUE 
 from manim import config
@@ -6,8 +6,8 @@ from manim import config
 # animation
 duration = 12
 frame_rate = 60
+paused = False # add pause feature?
 
-# angles in radians
 total_rotation_angle_in_radians = 2*TAU
 
 # powerpoint png export size
@@ -36,16 +36,12 @@ def draw_potential_sphere(sphere, sphere_fade, color):
     return circle
 
 def draw_recent_path(Q):
-    # not sure these three lines are needed
-    path_x = np.cos(Q["angle_in_radians"] - Q["trailing_path_angle_in_radians"]) * Q["dipole_orbit_radius"]
-    path_y = np.sin(Q["angle_in_radians"] - Q["trailing_path_angle_in_radians"]) * Q["dipole_orbit_radius"]
-    points = [[path_x,path_y,0]]
-    loop_angle_in_radians = Q["angle_in_radians"] - Q["trailing_path_angle_in_radians"]
-    while loop_angle_in_radians < Q["angle_in_radians"] :
-        path_x = np.cos(loop_angle_in_radians) * Q["dipole_orbit_radius"]
-        path_y = np.sin(loop_angle_in_radians) * Q["dipole_orbit_radius"]
-        points.append([path_x, path_y, 0])
-        loop_angle_in_radians += 1*TAU/360
+    angle = Q["angle_in_radians"] - Q["trailing_path_angle_in_radians"]
+    radius = Q["dipole_orbit_radius"]
+    points = [[np.cos(angle) * radius, np.sin(angle) * radius, 0]]
+    
+    for loop_angle in np.arange(angle, Q["angle_in_radians"], TAU/360):
+        points.append([np.cos(loop_angle) * radius, np.sin(loop_angle) * radius, 0])
     
     recent_path = VGroup()
     n_segments = len(points) - 1
@@ -61,19 +57,17 @@ def draw_recent_path(Q):
 
 def update_path(mob, dt, Q):
     global frame_count
-    
-    color=Q["color"]
-    
+        
     Q["angle_in_radians"] += Q["per_frame_increment_angle_in_radians"]
     Q["opacity"] = max(0, Q["opacity"] - dt / 10)
     updated_path = draw_recent_path(Q)
     
     if (frame_count % Q["frames_between_tracer_origins"] == 0) :
-        tracer_origin = Circle(color=color, radius=Q["tracer_origin_radius"], fill_opacity=1).move_to(Q["circle"].get_center())
+        Q["potential_spheres"].append((Q["circle"].get_center()[0], Q["circle"].get_center()[1], 0))
+        tracer_origin = Circle(color=Q["color"], radius=Q["tracer_origin_radius"], fill_opacity=1).move_to(Q["circle"].get_center())
         Q["tracer_origins"].append(tracer_origin)
         if (len(Q["tracer_origins"]) > Q["num_tracer_origins"]) :
             Q["tracer_origins"].pop(0)
-        Q["potential_spheres"].append((Q["circle"].get_center()[0], Q["circle"].get_center()[1], 0))
 
     Q["sphere_fade_values"] = calculate_sphere_fade_values(Q)
     for index, potential_sphere in enumerate(Q["potential_spheres"]) :
@@ -83,7 +77,7 @@ def update_path(mob, dt, Q):
 
     dot = 0
     for tracer_origin in Q["tracer_origins"] :
-        tracer_origin.set_color(interpolate_color(color, WHITE, (Q["num_tracer_origins"] - dot) / (2 * Q["num_tracer_origins"])))
+        tracer_origin.set_color(interpolate_color(Q["color"], WHITE, (Q["num_tracer_origins"] - dot) / (2 * Q["num_tracer_origins"])))
         updated_path.add(tracer_origin)
         dot += 1
 
@@ -108,7 +102,7 @@ def get_updater(self, Q_key):
         update_path(mob, dt, self.Q[Q_key])
     return updater
 
-class OrbitingCircles(Scene):
+class OrbitingPointCharges(Scene):
     
     # the construct is called once per animation.
     def construct(self):
@@ -157,7 +151,7 @@ class OrbitingCircles(Scene):
         for Q_key in self.Q:
             self.Q[Q_key]["circle"] = Circle(color=self.Q[Q_key]["color"], radius=self.Q[Q_key]["point_charge_representation_radius"], fill_opacity=1).shift(self.Q[Q_key]["initial_position"] * self.Q[Q_key]["dipole_orbit_radius"])
             self.Q[Q_key]["sphere_fade_values"] = calculate_sphere_fade_values(self.Q[Q_key])
-            self.Q[Q_key]["num_tracer_origins"] = self.Q[Q_key]["trailing_path_angle_in_radians"] / (self.Q[Q_key]["frames_between_tracer_origins"]*self.Q[Q_key]["per_frame_increment_angle_in_radians"]) - 2
+            self.Q[Q_key]["num_tracer_origins"] = self.Q[Q_key]["trailing_path_angle_in_radians"] / (self.Q[Q_key]["frames_between_tracer_origins"]*self.Q[Q_key]["per_frame_increment_angle_in_radians"]) - 3
 
             self.add(self.Q[Q_key]["circle"])
             self.Q[Q_key]['recent_path'] = draw_recent_path(self.Q[Q_key])

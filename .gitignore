@@ -5,3 +5,10 @@
 *.txt
 *.__pycache__
 *.pyc
+*.aux
+*.svg
+*.tex
+*.log
+*.xdv
+*.dvi
+*.env

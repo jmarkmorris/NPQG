@@ -1,3 +1,4 @@
+# PATH=$PATH:/usr/local/texlive/2023/bin/universal-darwin
 from manim import *
 import pygments.styles as code_styles
 from manim_voiceover import VoiceoverScene

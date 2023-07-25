@@ -1,4 +1,4 @@
-# manim --show_in_file_browser dipole_orbit_manim.py OrbitingCircles -p
+# manim -pqh --disable_caching dipole_orbit_manim.py OrbitingCircles -p
 from manim import *
 from manim import RED, BLUE 
 from manim import config
@@ -102,7 +102,7 @@ def get_updater(self, Q_key):
         update_path(mob, dt, self.Q[Q_key])
     return updater
 
-class OrbitingCircles(Scene):
+class OrbitingPointCharges(Scene):
     
     # the construct is called once per animation.
     def construct(self):
