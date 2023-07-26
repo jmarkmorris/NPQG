@@ -1,4 +1,4 @@
-# manim -pqh --disable_caching dipole_orbit_manim.py OrbitingCircles -p
+# manim -pqh --disable_caching orbiting_point_charges.py OrbitingPointCharges -p
 from manim import *
 from manim import RED, BLUE 
 from manim import config

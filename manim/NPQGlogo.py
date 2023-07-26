@@ -2,11 +2,18 @@
 
 from manim import *
 
+frame_rate = 60
+config.pixel_width = 2998
+config.pixel_height = 1686
+config.frame_rate = frame_rate
+
 ELECTRIC_PURPLE = "#8F00FF"
 DEEP_PURPLE = "#47015D"
 TRUE_PURPLE = "#6A0DAD"
 INDIGO = "#4B0082"
 NORTHWESTERN = "#4E2A84"
+
+
 
 colors = [PURE_BLUE, PURE_RED, PURE_BLUE, PURE_RED]
 
