@@ -1,4 +1,6 @@
 # manim -pqh emergence.py emergence -p
+# 
+# To do :
 # add argument handling
 # manim -pqh emergence.py emergence -p --arg 1 2 3.14 4.56
 # argv[1] : blah [default = x]

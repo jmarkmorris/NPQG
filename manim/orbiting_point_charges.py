@@ -1,4 +1,17 @@
 # manim -pqh --disable_caching orbiting_point_charges.py OrbitingPointCharges -p
+
+# 
+# To do :
+# 1. add argument handling
+# manim -pqh emergence.py emergence -p --arg 1 2 3.14 4.56
+# argv[1] : blah [default = x]
+# argv[2] : 
+# argv[3] : 
+# argv[4] : 
+#
+# 2. convert units to field speed @
+
+
 from manim import *
 from manim import RED, BLUE 
 from manim import config
