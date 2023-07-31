@@ -1,4 +1,4 @@
-# manim -pqh emergence.py emergence -p
+# manim emergence.py emergence -pqh --disable_caching -p
 # 
 # To do :
 # add argument handling
@@ -13,6 +13,7 @@ import random
 import itertools
 from colour import Color
 import math
+import sys
 
 config.frame_rate = 60
 
@@ -74,11 +75,11 @@ def get_next_coordinates(graph, velocities, vertex_key, dt):
 class emergence(Scene):
     def construct(self):
         
-        # Get the command line arguments
-        int_arg1 = int(sys.argv[1])
-        int_arg2 = int(sys.argv[2])
-        float_arg1 = float(sys.argv[3])
-        float_arg2 = float(sys.argv[4])
+        # # Get the command line arguments
+        # int_arg1 = int(sys.argv[1])
+        # int_arg2 = int(sys.argv[2])
+        # float_arg1 = float(sys.argv[3])
+        # float_arg2 = float(sys.argv[4])
 
         colors = [PURE_RED, PURE_BLUE]
         # x_range = (-3, 3)
@@ -139,4 +140,4 @@ class emergence(Scene):
                 mob.vertices[vertex].move_to(next_positions[vertex])
 
         G.add_updater(update_vertices)
-        self.wait(60)
+        self.wait(6)
