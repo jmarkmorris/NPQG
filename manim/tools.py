@@ -16,3 +16,24 @@ INDIGO = "#4B0082"
         }
     )
     self.add(grid)
+
+# A easy to read way to define a dictionary.
+# A way to pass a dictionary to a function rather than a long args list.
+from manim import *
+
+class jj(Scene):
+    def construct(self):
+        
+        kwargs = {
+            'side_length': 5, 
+            'stroke_color': GREEN, 
+            'fill_color': BLUE, 
+            'fill_opacity': 0.75
+        }
+        sq = Square(**kwargs)
+        # sq = Square(side_length=5, stroke_color=GREEN, fill_color=BLUE, fill_opacity=0.75)
+
+        # self.play(Create(sq), run_time=3)
+        self.play(Create(sq), run_time=3, subcaption="this is my caption", subcaption_duration=3)
+
+        self.wait() 

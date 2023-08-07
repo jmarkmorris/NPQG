@@ -16,9 +16,11 @@ import math
 import sys
 
 config.frame_rate = 60
+# num_vertices = 24
+# num_vertices = 12  # add the ingredients for a fermion and see what happens
+num_vertices = 24
 
 class ColoredDot(Dot):
-    # def __init__(self, color, coordinates, **kwargs):
     def __init__(self, color, coordinates, **kwargs):
         super().__init__(**kwargs)
         self.color = color
@@ -56,7 +58,7 @@ def get_next_coordinates(graph, velocities, vertex_key, dt):
     if next_coordinates[0] <= -7 or next_coordinates[0] >= 7:
         touch_line_start = next_coordinates - np.array([0, 0.1, 0])
         touch_line_end = next_coordinates + np.array([0, 0.1, 0])
-        touch_line = Line(touch_line_start, touch_line_end)
+        touch_line = Bzzzt(touch_line_start, touch_line_end)
         graph.add(touch_line)
 
     if next_coordinates[1] <= -4 or next_coordinates[1] >= 4:
@@ -69,12 +71,12 @@ def get_next_coordinates(graph, velocities, vertex_key, dt):
     next_coordinates[1] = max(-4, min(next_coordinates[1], 4))
     next_coordinates[2] = 0
 
-
     return next_coordinates
 
 class emergence(Scene):
     def construct(self):
         
+        # this caused problems.... check with Bai
         # # Get the command line arguments
         # int_arg1 = int(sys.argv[1])
         # int_arg2 = int(sys.argv[2])
@@ -82,14 +84,20 @@ class emergence(Scene):
         # float_arg2 = float(sys.argv[4])
 
         colors = [PURE_RED, PURE_BLUE]
+        # x_range = (-6, 6)
+        # x_range = (-5, 5)
+        # x_range = (-4, 4)
         # x_range = (-3, 3)
-        # y_range = (-3, 3)
-        x_range = (-2, 2)
-        y_range = (-1, 1)
+        # x_range = (-2, 2)
+        x_range = (-1, 1)
 
-        # num_vertices = 24
-        # num_vertices = 12  # add the ingredients for a fermion and see what happens
-        num_vertices = 12 
+        # y_range = (-3, 3)
+        # y_range = (-2, 2)
+        y_range = (-1, 1)
+        # y_range = (-0.5, 0.5)
+        # y_range = (-0.25, 0.25)
+        # y_range = (-0.1, 0.1)
+
         vertices = {f'v{i}': ColoredDot(colors[i % 2], [random.uniform(*x_range), random.uniform(*y_range), 0]) for i in range(num_vertices)}
         vertex_config = {v: {'color': vertices[v].color, 
                              'stroke_width': 1, 
@@ -98,7 +106,12 @@ class emergence(Scene):
         layout = {}
         layout = {v: vertices[v].coordinates for v in vertices}
         
-        VelocityMultiplier = math.pow(10, 0) # the animation fails if velocity is too high. Not sure why. Possible bug.
+        # the animation fails if velocity is too high. Not sure why. Possible bug.
+        # VelocityMultiplier = 0.1 * math.pow(10, 0) # experiment to see if this will reduce the energy. It didn't seem to make a difference. Interesting.
+        # VelocityMultiplier = 0.01 * math.pow(10, 0) 
+        VelocityMultiplier = math.pow(10, 0) 
+        # VelocityMultiplier = 3 * math.pow(10, 0) 
+        # velocities = {f'v{i}': np.array([(random.choice([-1, 1]) * random.uniform(.1, .15) * VelocityMultiplier) if j != 2 else 0 for j in range(3)]) for i in range(num_vertices)}
         velocities = {f'v{i}': np.array([(random.choice([-1, 1]) * random.uniform(.1, .2) * VelocityMultiplier) if j != 2 else 0 for j in range(3)]) for i in range(num_vertices)}
 
         edges = list(itertools.combinations(vertices.keys(), 2))
@@ -106,7 +119,7 @@ class emergence(Scene):
             edge: {
                 'color': vertices[edge[0]].color if vertices[edge[0]].color == vertices[edge[1]].color 
                         else Color("#8F00FF"),   # Electric Purple!
-                'stroke_width': 1 #1.5 is good if focused on relationships, but overpowers the vertices.
+                'stroke_width': 1 # 1.5 is good if focused on relationships, but overpowers the vertices.
             } for edge in edges
         }
 
@@ -140,4 +153,9 @@ class emergence(Scene):
                 mob.vertices[vertex].move_to(next_positions[vertex])
 
         G.add_updater(update_vertices)
-        self.wait(6)
+
+        # this controls the video length
+        self.wait(59)
+
+
+        # add a way to keep the history of per frame location for each point charge so they can be drawn as well

@@ -13,7 +13,7 @@
 
 
 from manim import *
-from manim import RED, BLUE 
+# from manim import RED, BLUE 
 from manim import config
 
 # animation
