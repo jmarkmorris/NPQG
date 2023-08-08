@@ -31,9 +31,12 @@ class jj(Scene):
             'fill_opacity': 0.75
         }
         sq = Square(**kwargs)
-        # sq = Square(side_length=5, stroke_color=GREEN, fill_color=BLUE, fill_opacity=0.75)
 
-        # self.play(Create(sq), run_time=3)
         self.play(Create(sq), run_time=3, subcaption="this is my caption", subcaption_duration=3)
-
         self.wait() 
+
+
+# How to print a dictionary in a readable format.
+import json
+json_string = json.dumps(spheres, indent=4)
+print(json_string)

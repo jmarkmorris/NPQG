@@ -2,11 +2,14 @@
 
 from manim import *
 import random
-import json
+# import json
 
 INDIGO = "#4B0082"
-run_time = 16
+ELECTRIC_PURPLE = "#8F00FF"
+run_time = 60
+# run_time = 16
 frame_rate = 60
+# frame_rate = 60
 # paused = False # add pause feature?
 
 # powerpoint png export size
@@ -15,58 +18,22 @@ config.pixel_height = 1686
 config.frame_rate = frame_rate
 
 radius_I = 0.25
-radius_II = 1.00
-radius_III = 1.75
+radius_II = 0.5
+radius_III = 0.8
+radius_IV = 0.3
+personality_offset = 2.85
 
 class noethercore(ThreeDScene):
     def construct(self):
-        self.set_camera_orientation(phi=70 * DEGREES, theta=45 * DEGREES)
+        self.set_camera_orientation(phi=60 * DEGREES, theta=45 * DEGREES)
         self.camera.background_color = INDIGO
-
-        spheres = [
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            },
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),  
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            },
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            },
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            },
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            },
-            {
-                'radius': 0.10,
-                'resolution':(30, 15),
-                'u_range':(0, TAU),
-                'v_range':(0, PI)
-            }
-        ]
+   
         charges = [
             {
                 'center': (radius_I,0,0),
                 'color': PURE_RED,
                 'orbit_radius': radius_I,
-                'orbit_cycles': 64,
+                'orbit_cycles': 128,
                 'orbit_rotate': 0,
                 'path_rotate':[0, 0, 1],
                 'orbit_normal':[0, 0, 1]
@@ -75,7 +42,7 @@ class noethercore(ThreeDScene):
                 'center': (-radius_I,0,0),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_I,
-                'orbit_cycles': 64,
+                'orbit_cycles': 128,
                 'orbit_rotate': 0,
                 'path_rotate':[0, 0, 1],
                 'orbit_normal':[0, 0, 1]
@@ -84,7 +51,7 @@ class noethercore(ThreeDScene):
                 'center': (0,radius_II,0),
                 'color': PURE_RED,
                 'orbit_radius': radius_II,
-                'orbit_cycles': 32,
+                'orbit_cycles': 64,
                 'orbit_rotate': PI/2,
                 'path_rotate':[0, 1, 0],
                 'orbit_normal':[1, 0, 0]
@@ -93,7 +60,7 @@ class noethercore(ThreeDScene):
                 'center': (0,-radius_II,0),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_II,
-                'orbit_cycles': 32,
+                'orbit_cycles': 64,
                 'orbit_rotate': PI/2,
                 'path_rotate':[0, 1, 0],
                 'orbit_normal':[1, 0, 0]
@@ -102,7 +69,7 @@ class noethercore(ThreeDScene):
                 'center': (0,0,radius_III),
                 'color': PURE_RED,
                 'orbit_radius': radius_III,
-                'orbit_cycles': 16,
+                'orbit_cycles': 32,
                 'orbit_rotate': PI/2,
                 'path_rotate':[1, 0, 0],
                 'orbit_normal':[0, 1, 0]
@@ -111,10 +78,43 @@ class noethercore(ThreeDScene):
                 'center': (0,0,-radius_III),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_III,
-                'orbit_cycles': 16,
+                'orbit_cycles': 32,
                 'orbit_rotate': PI/2,
                 'path_rotate':[1, 0, 0],
                 'orbit_normal':[0, 1, 0]
+            }
+        ]
+
+        personalities = [
+            {
+                'center': (personality_offset, radius_IV, 0),
+                'orbit_origin': (personality_offset, 0, 0),
+                'orbit_normal': [1, 0, 0]
+            },
+            {
+                'center': (-personality_offset, radius_IV, 0),
+                'orbit_origin': (personality_offset, 0, 0),
+                'orbit_normal': [1, 0, 0]
+            },
+            {
+                'center': (0, personality_offset, radius_IV),
+                'orbit_origin': (0, personality_offset, 0),
+                'orbit_normal': [0, 1, 0]
+            },
+            {
+                'center': (0, -personality_offset, radius_IV),
+                'orbit_origin': (0, personality_offset, 0),
+                'orbit_normal': [0, 1, 0]
+            },
+            {
+                'center': (radius_IV, 0, personality_offset),
+                'orbit_origin': (0, 0, personality_offset),
+                'orbit_normal': [0, 0, 1]
+            },
+            {
+                'center': (radius_IV, 0, -personality_offset),
+                'orbit_origin': (0, 0, personality_offset),
+                'orbit_normal': [0, 0, 1]
             }
         ]
 
@@ -122,9 +122,9 @@ class noethercore(ThreeDScene):
             'x_range': [-5,5,1],
             'y_range': [-5,5,1],
             'z_range': [-5,5,1],
-            'x_length': 8,
-            'y_length': 8,
-            'z_length': 6,
+            'x_length': 7,
+            'y_length': 7,
+            'z_length': 7,
             'axis_config': {
                 'tip_shape': ArrowTriangleTip
             }
@@ -145,25 +145,56 @@ class noethercore(ThreeDScene):
             orbital_path.rotate(angle=charge['orbit_rotate'], axis=charge['path_rotate'])
             self.add(orbital_path)
 
-        for sphere_kwargs, charge in zip(spheres, charges):
-            sphere = Sphere(center=charge['center'], **sphere_kwargs)
-            sphere.move_to(charge['center']) # needed?
+            sphere = Dot3D(point=charge['center'])
             sphere.set_color(charge['color'])
             self.add(sphere)
 
             animations.append(Rotating(sphere, radians=TAU*charge['orbit_cycles'], axis=charge['orbit_normal'], about_point=ORIGIN, rate_func=linear, run_time=run_time))
+        
+        for personality in personalities:
+            dot = Dot3D(point=personality['center'], color=WHITE)
+            self.add(dot)
+            animations.append(Rotating(dot, radians=TAU*8, axis=personality['orbit_normal'], about_point=personality['orbit_origin'], rate_func=linear, run_time=run_time))
+        
+        for i in range(3):
+            for j in [-personality_offset, personality_offset]:
+                personality_orbital_path = Circle(radius=radius_IV, color=WHITE, stroke_opacity=0.5, stroke_width=1, fill_color=WHITE, fill_opacity=0.3)
+                position = [0, 0, 0]
+                position[i] = j
+                personality_orbital_path.move_to(position)
+                if i == 0:
+                    personality_orbital_path.rotate(PI/2, axis=Y_AXIS)
+                elif i == 1:
+                    personality_orbital_path.rotate(PI/2, axis=X_AXIS)
+                self.add(personality_orbital_path)
 
-        self.begin_ambient_camera_rotation(rate=TAU/2)
+
+        text = Text('Fermion Architecture Hypothesis        by J Mark Morris\nMoving point charges cause changing electromagnetic fields.\nOrbiting charges form strong electromagnetic fields in each axial vortex.\nAxial potential fields map to the strong force.\nThe orbital axes precess with spin 1/2 (not shown).\nEach orbiting dipole has an angular momentum vector.\nThe angular momentum vectors have magnitudes S,M,L.\nThere are two distinct orderings: SML and SLM, which map to pro and anti.\nEither ordering can spin left or right.\nThe central nest of three orbiting dipoles is a Noether core.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        text.to_corner(UL)
+        text.shift(LEFT*0.25 + UP*0.25)
+        self.add_fixed_in_frame_mobjects(text)
+
+        text = Text('Personality charges (- or +) are bound in each vortex.\nPersonality charges map to the weak force.\nNoether core orbital plane orientation is influenced by personality charges.\nColor charge maps to personality charge S,M,L dipole configuration.\nThe architecture has many symmetries.\nCharges continuously emit spherical potential streams.\nPath histories determine potential sphere streams and action.\nThe Noether core contracts and becomes more oblate as group velocity rises.\nGroup velocity facilitates change from Fermi-Dirac to Bose-Einstein statistics.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        text.to_corner(DL)
+        text.shift(LEFT*0.25 + DOWN*0.25)
+        self.add_fixed_in_frame_mobjects(text)
+
+        text = Text('The Noether core sub-assembly is reused in all bosons.\nPhotons are contra-rotating planar Noether cores.\nHiggs are Noether cores with near perfect shielding by superposition.\nW and Z bosons are ephemeral transitionary configurations.\nPoint charges are indestructable. No beginning. No end.\nPoint charges have provenance and may be tracked in reactions.\nIn this animation, the camera rotates around the fermion assembly.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        text.to_corner(UR)
+        text.shift(RIGHT*0.25 + UP*0.25)
+        self.add_fixed_in_frame_mobjects(text)
+
+        text = Text("Point charges have no fundamental speed limit.\nAssemblies may impose an emergent speed limit.\nOrbiting charges with v = field speed are the symmetry breaking point.\nThe smallest orbital radius and maximum curvature maps to Planck scale.\nThe orbital radii are at vastly different scales.\nDipoles broker energy in quanta of angular momentum.\nNoether cores are stretchy rulers and variable clocks. (ala Einstein's GR)", font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        text.to_corner(DR)
+        text.shift(RIGHT*0.25 + DOWN*0.25)
+        self.add_fixed_in_frame_mobjects(text)
+
+        self.begin_ambient_camera_rotation(rate=TAU/16)
         self.play(*animations)
         self.stop_ambient_camera_rotation()
 
         self.wait(0)
 
 
-            #     'scaling': LogBase(),
-            # json_string = json.dumps(sphere_kwargs, indent=4)
-            # print(json_string)
-        # json_string = json.dumps(spheres, indent=4)
-        # print(json_string)
-        # json_string = json.dumps(charges, indent=4)
-        # print(json_string)
+
+
