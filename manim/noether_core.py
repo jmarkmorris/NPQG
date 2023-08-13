@@ -35,7 +35,7 @@ class noether_core(ThreeDScene):
                 'center': (radius_I,0,0),
                 'color': PURE_RED,
                 'orbit_radius': radius_I,
-                'orbit_cycles': 512,
+                'orbit_cycles': 256,
                 'orbit_rotate': 0,
                 'path_rotate':[0, 0, 1],
                 'orbit_normal':[0, 0, 1]
@@ -44,7 +44,7 @@ class noether_core(ThreeDScene):
                 'center': (-radius_I,0,0),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_I,
-                'orbit_cycles': 512,
+                'orbit_cycles': 256,
                 'orbit_rotate': 0,
                 'path_rotate':[0, 0, 1],
                 'orbit_normal':[0, 0, 1]
@@ -53,7 +53,7 @@ class noether_core(ThreeDScene):
                 'center': (0,radius_II,0),
                 'color': PURE_RED,
                 'orbit_radius': radius_II,
-                'orbit_cycles': 256,
+                'orbit_cycles': 128,
                 'orbit_rotate': PI/2,
                 'path_rotate':[0, 1, 0],
                 'orbit_normal':[1, 0, 0]
@@ -62,7 +62,7 @@ class noether_core(ThreeDScene):
                 'center': (0,-radius_II,0),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_II,
-                'orbit_cycles': 256,
+                'orbit_cycles': 128,
                 'orbit_rotate': PI/2,
                 'path_rotate':[0, 1, 0],
                 'orbit_normal':[1, 0, 0]
@@ -71,7 +71,7 @@ class noether_core(ThreeDScene):
                 'center': (0,0,radius_III),
                 'color': PURE_RED,
                 'orbit_radius': radius_III,
-                'orbit_cycles': 128,
+                'orbit_cycles': 64,
                 'orbit_rotate': PI/2,
                 'path_rotate':[1, 0, 0],
                 'orbit_normal':[0, 1, 0]
@@ -80,7 +80,7 @@ class noether_core(ThreeDScene):
                 'center': (0,0,-radius_III),
                 'color': PURE_BLUE,
                 'orbit_radius': radius_III,
-                'orbit_cycles': 128,
+                'orbit_cycles': 64,
                 'orbit_rotate': PI/2,
                 'path_rotate':[1, 0, 0],
                 'orbit_normal':[0, 1, 0]
@@ -90,31 +90,37 @@ class noether_core(ThreeDScene):
         personalities = [
             {
                 'center': (personality_offset, radius_IV, 0),
+                'color': PURE_BLUE,
                 'orbit_origin': (personality_offset, 0, 0),
                 'orbit_normal': [1, 0, 0]
             },
             {
                 'center': (-personality_offset, radius_IV, 0),
+                'color': PURE_BLUE,
                 'orbit_origin': (personality_offset, 0, 0),
                 'orbit_normal': [1, 0, 0]
             },
             {
                 'center': (0, personality_offset, radius_IV),
+                'color': PURE_BLUE,
                 'orbit_origin': (0, personality_offset, 0),
                 'orbit_normal': [0, 1, 0]
             },
             {
                 'center': (0, -personality_offset, radius_IV),
+                'color': PURE_BLUE,
                 'orbit_origin': (0, personality_offset, 0),
                 'orbit_normal': [0, 1, 0]
             },
             {
                 'center': (radius_IV, 0, personality_offset),
+                'color': PURE_BLUE,
                 'orbit_origin': (0, 0, personality_offset),
                 'orbit_normal': [0, 0, 1]
             },
             {
                 'center': (radius_IV, 0, -personality_offset),
+                'color': PURE_BLUE,
                 'orbit_origin': (0, 0, personality_offset),
                 'orbit_normal': [0, 0, 1]
             }
@@ -154,7 +160,7 @@ class noether_core(ThreeDScene):
             animations.append(Rotating(sphere, radians=TAU*charge['orbit_cycles'], axis=charge['orbit_normal'], about_point=ORIGIN, rate_func=linear, run_time=run_time))
         
         for personality in personalities:
-            dot = Dot3D(point=personality['center'], color=WHITE)
+            dot = Dot3D(point=personality['center'], color=personality['color'])
             self.add(dot)
             animations.append(Rotating(dot, radians=TAU*32, axis=personality['orbit_normal'], about_point=personality['orbit_origin'], rate_func=linear, run_time=run_time))
         

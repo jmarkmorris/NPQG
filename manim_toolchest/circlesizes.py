@@ -1,4 +1,4 @@
-# manim -pqh --disable_caching circlesizes.py circlesizes -p
+# manim -pqh --disable_caching CircleSizes.py CircleSizes -p
 
 
 from manim import *
@@ -8,7 +8,7 @@ INDIGO = "#4B0082"
 
 colors = [PURE_BLUE, PURE_RED]
 
-class circlesizes(Scene):
+class CircleSizes(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
 
