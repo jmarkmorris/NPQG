@@ -1,4 +1,4 @@
-# # manim noether_core.py noether_core -pqm --disable_caching -p
+# # manim fermion.py fermion -pqm --disable_caching -p
 
 from manim import *
 import random
@@ -25,7 +25,7 @@ radius_III = 0.8
 radius_IV = 0.3
 personality_offset = 2.85
 
-class noether_core(ThreeDScene):
+class fermion(ThreeDScene):
     def construct(self):
         self.set_camera_orientation(phi=60 * DEGREES, theta=45 * DEGREES)
         self.camera.background_color = INDIGO

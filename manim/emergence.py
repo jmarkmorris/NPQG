@@ -1,12 +1,5 @@
 # manim emergence.py emergence -pqh --disable_caching -p
 # 
-# To do :
-# add argument handling
-# manim -pqh emergence.py emergence -p --arg 1 2 3.14 4.56
-# argv[1] : blah [default = x]
-# argv[2] : 
-# argv[3] : 
-# argv[4] : 
 #
 from manim import *
 import random
@@ -75,13 +68,6 @@ def get_next_coordinates(graph, velocities, vertex_key, dt):
 
 class emergence(Scene):
     def construct(self):
-        
-        # this caused problems.... check with Bai
-        # # Get the command line arguments
-        # int_arg1 = int(sys.argv[1])
-        # int_arg2 = int(sys.argv[2])
-        # float_arg1 = float(sys.argv[3])
-        # float_arg2 = float(sys.argv[4])
 
         colors = [PURE_RED, PURE_BLUE]
         # x_range = (-6, 6)
