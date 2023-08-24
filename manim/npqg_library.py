@@ -14,6 +14,9 @@
 # fermion : inherits Noether_core, personality
 
 # path : A fundamental concept that is emergent according to the evolution equation in absolute time and absolute space.
+# path is such an awesome concept. I can see why Feynman resonated with it. Unfortunately, he was one level removed from nature.
+# spherical potential emission rooted at (t, x, y, z) with point charge (q) velocity (v aka dx/dt, dy,dt, dz,dt)
+# I would guess that some model components in analytical or simulation models may benefit from use of polar coordinates for the emissions.
 
 
 
