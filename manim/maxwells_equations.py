@@ -8,9 +8,9 @@
 # that J in maxwell's fourth equation sticks out like a sore thumb. that's not describing point charges.
 # they need to be rewritten for point charges.
 
-# 3b1b and steve brunton div and curl and gradient videos
+# See 3b1b and steve brunton div and curl and gradient videos and wikipedia.
 
-# Divergence.
+# Divergence of the E field
 # the unit potentials are the only entities with divergence. 
 # translated into our terminology, 
 # the electrino has a charge divergence of -e/6, 
@@ -27,5 +27,20 @@
 # what are the units of divergence anyway?  Is it a charge or potential per unit area? i.e., over a sphere?
 # if math defines divergence as dimensionless, should I put in the units for this specific application of math?
 # It would make sense to at least have a trace of how all the dimensional analysis arises.
+# oh also we need to talk about the permittivity of free space.  
+# We need permittivity of spacetime to understand photon assemblies and the speed of light through spacetime assemblies.
+# But permittivity of free space doesn't make sense at the level of point charges. It comes later at a higher assembly order.
+# So that is our first adaptation of Maxwell's equations for point charges.
 
-# Curl
+# Divergence of the B field
+# Check, makese sense. There are no magnetic monopoles.
+# There are no other extraneous terms in this equation, so it maps directly to the point charge universe.
+# However, we may find that there is a superior mathematics for the point charge approach.
+# It would be cool if it was geometric.
+# Many of these regular assemblies can be viewed as a standing wave that is rotating and translating. 
+# Thinking that way may lead to the more general geometric solution.
+
+# relationship of E and B.
+# need to work on this
+# "the curl of E is equal to -dB/dt"
+# Ok, does that relat
