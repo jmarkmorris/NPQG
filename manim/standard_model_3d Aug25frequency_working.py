@@ -1,8 +1,9 @@
 # manim -pqh --disable_caching standard_model_3d.py standard_model_3d -p
 
 # this is an example of multiple concurrent assemblies each defined by a dictionary.
+# this code is sort of bulky. Possibly some cleverness related to the canonical model could make this code better.
 
-# next step : animate the rotation of each animation. 
+# next step : animate the rotation of each animation.
 
 from manim import *
 import random
@@ -10,7 +11,7 @@ from numpy import array
 
 run_time = 30
 # run_time = 16
-frame_rate = 60
+frame_rate = 30
 # frame_rate = 60
 # paused = False # add pause feature?
 
@@ -58,12 +59,12 @@ class standard_model_3d(ThreeDScene):
         text = Paragraph(
                     '  Title : Standard Model Fermion Architecture Hypothesis.'
                     '  Author : J Mark Morris.'
-                    '  Mapping : Standard model generation (I, II, III) + Noether core binaries (III, II, I) = IV (4).\n'
-                    '  Insight : Assemblies flatten with group velocity.'
+                    '  Mapping : Standard model generation (I, II, III) + Noether core binaries (III, II, I) = 4.\n'
+                    '  Insight : Assemblies flatten with velocity.'
                     '  Mapping : Color charge may correspond to the three geometries for each quark.'
                     '  Mapping : Electron and neutrino have no color charge due to symmetry.\n'
                     '  Mapping : High energy reactions can cause decay of outer Noether core binaries.'
-                    '  Mapping : Outer binary decay reveals apparent energy (e.g., mass) previously shielded by superposition.\n'
+                    '  Mapping : Outer binary decay makes apparent energy (e.g., mass) previously shielded by superposition.\n'
                     '  Mapping : Quark orbital plane orientations logically match Weinberg angle (~tau/12). (not shown)'
                     '  Note : The other charge distribution geometry possibilities for quarks and neutrinos seem counterintuitive.\n'
                     '  Mapping : Orbital poles of Noether core binaries precess with spin "1/2" (i.e., f/2). (not shown)'
@@ -261,10 +262,7 @@ class standard_model_3d(ThreeDScene):
                 # self.add(z_axis_label)
                 # this code needs to put the axes and the label into an animation group
                 axes.move_to(A['position'])
-
-                # self.add(axes)
-                assemblies.append(Rotating(axes, axis=np.array([1, 1, 1]), run_time=run_time))
-                # assemblies.append(Rotating(axes, axis=UP))
+                self.add(axes)
 
             '''
             animate the noether core.
@@ -302,12 +300,7 @@ class standard_model_3d(ThreeDScene):
                     if (c % 2) == 0: orbital_path.rotate_about_origin(PI) # this moves the start of the circle path
                     orbital_path.move_to(A['position'])
                     orbital_path.rotate(angle=charge['orbit_rotate'], axis=charge['path_rotate'])
-
-                    # self.add(orbital_path, sphere)
-                    assemblies.append(Rotating(orbital_path, axis=np.array([1, 1, 1]), run_time=run_time))
-                    assemblies.append(Rotating(sphere, axis=np.array([1, 1, 1]), run_time=run_time))
-                    # assemblies.append(Rotating(orbital_path, axis=UP))
-                    # assemblies.append(Rotating(sphere, axis=UP))
+                    self.add(orbital_path, sphere)
 
                     orbits = []
                     for _ in range(charge['frequency']):
@@ -320,6 +313,7 @@ class standard_model_3d(ThreeDScene):
                         orbits.append(orbit)
                     
                     assemblies.append(AnimationGroup(*orbits))
+                    # lag_ratio=1 didn't solve it
                 
 
             '''
@@ -349,11 +343,7 @@ class standard_model_3d(ThreeDScene):
                         personality_orbital_path.rotate(PI/2, axis=Y_AXIS)
                     elif i == 1:
                         personality_orbital_path.rotate(PI/2, axis=X_AXIS)
-
-                    # self.add(personality_orbital_path)
-                    assemblies.append(Rotating(personality_orbital_path, axis=np.array([1, 1, 1]), about_point=A['position'], run_time=run_time))
-                    # assemblies.append(Rotating(personality_orbital_path, axis=UP, about_point=A['position'], run_time=run_time))
-
+                    self.add(personality_orbital_path)
 
                     color = PURE_BLUE #start every charge at blue here and change selected ones to red
                     if assembly in ["Electron", "Muon", "Tau"]:
@@ -387,27 +377,15 @@ class standard_model_3d(ThreeDScene):
                     }
                     dot = Dot3D(**kwargs)
                     dot.shift(A['position'])
-
                     self.add(dot)
-
                     assemblies.append(MoveAlongPath(dot, 
                                                     personality_orbital_path, 
                                                     radians=TAU*32, 
                                                     rate_func=frequency(1), 
                                                     run_time=run_time
                                                     ))
-
-                    
-        # none of these rotate the way I want:        
-        # self.begin_ambient_camera_rotation(rate=TAU/4, about="theta") # about=z
-        # self.begin_ambient_camera_rotation(rate=TAU/4, about="gamma") # about=z
-        # self.begin_ambient_camera_rotation(rate=TAU/4, about="phi") # about=x
-
-        self.play(*assemblies)
-
-
-        # self.stop_ambient_camera_rotation()
-
+                
+        self.play(*assemblies) 
 
         self.wait(0)
 
