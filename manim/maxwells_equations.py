@@ -18,12 +18,18 @@
 # that's it, there is no other divergence in the universe. This is it.
 # so that is another characteristic of the unit potentials.
 # Show the divergence relative to the eight-ball (t, x, y, z, vx, vy, vz, q)
-# and the charge divergence for each point charge is q / (1+v)  
+# and the charge divergence for each point charge is what? 
+# We have potential flow rate = q  dA/dt . Interesting, is it really a flow rate in terms of area of a sphere? Hmmm.  
+# We treat the potential as if it releasing spherical surfaces with a scalar potential at the origin
+# The potential comes down the 1/r curve.
+# The area of a sphere is given by 4 pi r^2.
+# So does that work out to a flow rate equal to the divergence?
+# So the total potential on the surface at any given radius is 4 pi r^2 * q/r? 
+
 # If we take the unit sphere then f(x,y,z) = x*xhat, y*yhat, z*zhat.
 # So the natural divergence is 3 according to Brunton because each partial derivative yields 1 and they are summed by the dot product.
 # But what are we trying to measure here?  Charge or potential? Or both.
-# If we define the potential field as f(x,y,z,t)= q/@r, where r = sqrt (x^2 + y^2 + z^2)
-# so what is the divergence of this potential field? Now it is more complicated.
+# If we define the potential field as f(x,y,z,t)= q/(@)r, where r = sqrt (x^2 + y^2 + z^2)
 # what are the units of divergence anyway?  Is it a charge or potential per unit area? i.e., over a sphere?
 # if math defines divergence as dimensionless, should I put in the units for this specific application of math?
 # It would make sense to at least have a trace of how all the dimensional analysis arises.
@@ -31,6 +37,19 @@
 # We need permittivity of spacetime to understand photon assemblies and the speed of light through spacetime assemblies.
 # But permittivity of free space doesn't make sense at the level of point charges. It comes later at a higher assembly order.
 # So that is our first adaptation of Maxwell's equations for point charges.
+# Brunton relates positive divergence to a fluid that is decompressing.  A negative divergence is a fluid compressing.  Interesting.
+
+# if the charge is moving, what is the effective starting charge of each sphere stream?
+# It seems like it would have to be evenly distributed over the distance traveled.
+# so if dx = v dt, then each sphere emits v dt as a constant rate.  
+# therefore this is why we divide by the velocity.
+# I'm still unhappy with how this blows up when velocity is < 1. Arghhhh.
+
+# Brunton now ties this constant divergence as follows
+# x(t) = x(0)e^t, y(t) = y(0)e^t
+# arghh, am I getting this all mixed up? how to do this from first principles of the point charge universe?
+
+
 
 # Divergence of the B field
 # Check, makese sense. There are no magnetic monopoles.
@@ -43,4 +62,28 @@
 # relationship of E and B.
 # need to work on this
 # "the curl of E is equal to -dB/dt"
-# Ok, does that relat
+# Again, no extraneous terms.
+# Does this equation cover the full range of point charge paths and velocities?
+# We need the general solution, not just the circle or ellipse.
+# Basically each point charge in a pairwise relationship is riding on the Dirac sphere stream of the other.
+# So what is that general solution. A two body solution for potential.  I would think that should exist already?
+# Brunton says that if you are looking at two dimensional vector fields in i-hat, and j-hat then the curl is is k-hat.  wtf?
+# So what does that mean for point charges in three dimensions? What is the dimension for curl?
+
+# Oct 2023, watching Dr. Don Lincoln new video on magnetism. Very interesting. 
+# I been watching several videos on how magnetism is taught. 
+# Dr. Don has made it clear to me that the level described is potentially very different than the point charge level and math.
+# He described relativistic effects on the charges in a current making a wire become non-neutral when carrying a current, 
+# relative to a moving charged particle, let's say electron.
+# Relativity means we are talking about spacetime assemblies, and the change in electron geometry with velocity.
+# Wow, even this pattern is an example of nature echoing its patterns at different scales.  Wow.
+# Ok, so that is all the permission I need so I can think differently.  
+# I do not need a 1 to 1 mapping of electromagnetic theory to the point charge level.
+# Instead, I am looking for the simpler behaviour at the point charge level that then maps directly to the higher level theory and math.
+# which all begs the question it all comes down to which is understanding the specific equations for all cases of two point charges.
+# That comes down to the dirac sphere stream from the emitting charge to the receiving charge.
+# I think I understand much of the influence of the path of the emitter. (the eight ball : t, x, y, z, dx/dt, dy/dt, dz/dt, q)
+# Assuming the sensible idea of constant rate emission of potential.
+# So now it comes down to the equation for a receiver at any potential velocity intersecting a Dirac sphere.
+# And once we have that, then we have superposition of action from every possible charge within the designated scope of the
+# simulation, and someday with an AI generated background adding some shaped variation as desired.
