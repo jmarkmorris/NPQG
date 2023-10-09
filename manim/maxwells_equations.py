@@ -110,4 +110,8 @@
 #   If v (||r) is moving toward, the action must slow v in that direction.
 # So is that it?  We need write down the geometry of the situation and do out sin()s and cosine()s. 
 # And then see what happens in simulation. 
-# Will this be a simple formula where q1 and q2 resolve the direction of the force?  Prolly. We'll see. 
+# Will this be a simple formula where q1 and q2 resolve the direction of the force?  Prolly. We'll see.
+# Another cool think about this approach is that it is velocity agnostic in a way. 
+# It doesn't care when the point charge velocity blasts through c or @.  
+# We have assigned no a priori fundamental speed limit to the point charge. 
+# It's pretty cool (and fortunate) that a natural speed limit emerges in an electrino:positrino binary.
