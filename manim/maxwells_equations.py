@@ -115,3 +115,25 @@
 # It doesn't care when the point charge velocity blasts through c or @.  
 # We have assigned no a priori fundamental speed limit to the point charge. 
 # It's pretty cool (and fortunate) that a natural speed limit emerges in an electrino:positrino binary.
+
+# In a simulation we need to store the path history of all relevant point charges, which could be a few or a lot depending on the objective.
+# The task at every t is to find all the Dirac sphere crossings for each pair of point charges.
+# Usually there will only be one crossing, but if v has exceeded @ there may be more than one.
+# We will need efficient algorithms to deterine those crossings. Some algorithms may be simulation objective dependent.
+# There is no doubt many mathematical and computational techniques that will be developed.
+# Quite a bit over my head here, but I wonder if there is such a thing as a 4D space filling curve (t,x,y,z)?
+# That way we could computationally store path extents (A to B) very inexpensively. 
+# This would be the level to do the first pass intersections. 
+# Perfect, you can use this data structure to reduce both the amount of computation and the memory for computing intersections.
+# Most of the cubes for each point charge pair will not have an intersection with time t-now. So those are quickly eliminated.
+# You probably want to tune the granularity of the first level cubes.
+#
+# It may makes sense to cache 4D cubes? This is a tradeoff. 
+# What is the latency and compute resource for a cube cache lookup or cube calculation? 
+# Ok, so let's say there's an intersection detected in the first level 4D cube? Then what?
+# Here is where we either do a cube cache lookup or go direct to calculation. Of course on a cache miss we also do the calculation.
+# And there are all kinds of ways to keep going one or multiple levels at a time.
+# We continue descending this computational structure until we calculate the intersection to within the simulation requirement.
+
+# On top of all this we might also introduce some spatial indices so we can go more directly to a finer granularity cube.
+# How cool is this???
