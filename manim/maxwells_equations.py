@@ -121,6 +121,7 @@
 # Usually there will only be one crossing, but if v has exceeded @ there may be more than one.
 # We will need efficient algorithms to deterine those crossings. Some algorithms may be simulation objective dependent.
 # There is no doubt many mathematical and computational techniques that will be developed.
+
 # Quite a bit over my head here, but I wonder if there is such a thing as a 4D space filling curve (t,x,y,z)?
 # That way we could computationally store path extents (A to B) very inexpensively. 
 # This would be the level to do the first pass intersections. 
@@ -137,3 +138,13 @@
 
 # On top of all this we might also introduce some spatial indices so we can go more directly to a finer granularity cube.
 # How cool is this???
+
+# also research spatiotemporal indices. 
+# There are probably already plenty of techniques for these type of 4D computations.
+# How do astrophysicists do computations? and keep track of paths?
+# also do more research space filling curves.
+
+# One idea is that each time step we calculate which cube hierarchy each charge is located and index that information by time.
+# We need to update the data structure whenever a particle crosses a cube boundary.  
+# This is a bottom up traversal.
+# Then when looking for the each partner we search increasing the radius from the receiving charge and examine all intersecting cubes.
