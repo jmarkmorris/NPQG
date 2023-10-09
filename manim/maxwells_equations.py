@@ -87,3 +87,26 @@
 # So now it comes down to the equation for a receiver at any potential velocity intersecting a Dirac sphere.
 # And once we have that, then we have superposition of action from every possible charge within the designated scope of the
 # simulation, and someday with an AI generated background adding some shaped variation as desired.
+
+# Ok, if we think in terms of each pair of point charges, then each point charge is always intersecting somewhere on the Dirac
+# sphere stream of the other. Think of it like a giant ski slope.  
+# If the partner is a like charge the force tends to push you down the ski slope.
+# An electrino, being a negative potential is at the negative pole of potential. A positrino sphere stream exerts action up the slope.
+# An positrino, being a positive potential is at the positive pole of potential. A electrino sphere stream exerts action down the slope.
+# But action is symmetrical on the 1/r curve. How cool is that? So we can think of this from either perspective.
+# Gosh, I remember drawing a picture way back in 2018 when I was pondering the ontology of potential. 
+# The portion of the receiver velocity that is orthogonal to the emitter's sphere stream (i.e., along the surface) experiences no action?
+# That seems to make sense, because at any time t, the potential is identical everywhere on the sphere, i.e., in any direction on the sphere.
+# Next we focus on the component of velocity that is on the line that coincides with the radius of the intersecting sphere.
+# Alright. Let's go through the cases.  Remember that emitter potential magnitude has been reduced by a factor of v. (And at v=0 it's a Dirac delta).
+# Case 1 : Emitter positrino : Receiver electrino
+#   The action is a force towards the path location at emission.
+#   If v (||r) is moving away, the action must slow v in that direction.
+#   If v (||r) is moving toward, the action increasess v in that direction.
+# Case 2 : switch case 1. Everything is the same.
+# Case 3 : electrino:electrino or positrino:positrino
+#   The action is a force away from the path location at emission.
+#   If v (||r) is moving away, the action increasess v in that direction.
+#   If v (||r) is moving toward, the action must slow v in that direction.
+# So is that it?  We need write down the geometry of the situation and do out sin()s and cosine()s. 
+# And then see what happens in simulation.  
