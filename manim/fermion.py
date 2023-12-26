@@ -25,6 +25,28 @@ radius_III = 0.8
 radius_IV = 0.3
 personality_offset = 2.85
 
+# Initialize the dictionary with all parts set to False
+parts_to_animate = {i: False for i in range(1, 7)}
+# 1 : binary I
+# 2 : binary II
+# 3 : binary III
+# 4 : personalities for binary I
+# 5 : personalities for binary II
+# 6 : personalities for binary III
+
+# To animate all parts
+for part in parts_to_animate:
+    parts_to_animate[part] = True
+
+# To animate parts 2, 5, and 6
+# for part in [2, 5, 6]:
+#     parts_to_animate[part] = True
+    
+# Initialize the personality colors with all parts set to PURE_BLUE
+personality_colors = {i: PURE_BLUE for i in range(1, 7)}
+# for personality in [2, 5]:
+#     personality_colors[personality] = PURE_RED
+
 class fermion(ThreeDScene):
     def construct(self):
         self.set_camera_orientation(phi=60 * DEGREES, theta=45 * DEGREES)
